@@ -29,7 +29,6 @@ void setup()
   Serial.begin(115200);
   pinMode(ledPin,OUTPUT);
   dht.setup(D4, DHTesp::DHT22);
-  Serial.println(LINE.getVersion());
   WiFi.begin(SSID, PASSWORD);
   Serial.printf("WiFi connecting to %s\n", SSID);
   while (WiFi.status() != WL_CONNECTED) {
@@ -38,6 +37,7 @@ void setup()
   }
   Serial.printf("\nWiFi connected\nIP : ");
   Serial.println(WiFi.localIP());
+  Serial.println(LINE.getVersion());
   LINE.setToken(LINE_TOKEN1);
   IPaddress =  WiFi.localIP().toString();
   LINE.notify("WeMos D1 R1 ทำการเชื่อมต่อ WiFi เรียบร้อย \nIP Address : "+ IPaddress);
@@ -109,7 +109,8 @@ void loop()
   if ((timeClient.getMinutes()  == 0 || timeClient.getMinutes()  == 30) && timeClient.getSeconds()  < 5) {
     LINE.setToken(LINE_TOKEN1);
  
-    LINE.notify(String (daysOfTheWeek[timeClient.getDay()]) + ", " + String (timeClient.getHours()) + " : " + String (timeClient.getMinutes()) + " : " + String (timeClient.getSeconds()) + "\n\nGP2Y1010AU0F - Raw Signal Value =" + String (voltsMeasured) + "\nVoltage = " + String (calcVoltage) + "\nDust Density = " + String (dustDensity)
+    LINE.notify(String (daysOfTheWeek[timeClient.getDay()]) + ", " + String (timeClient.getHours()) + " : " + String (timeClient.getMinutes()) + " : " 
+	+ String (timeClient.getSeconds()) + "\n\nGP2Y1010AU0F - Raw Signal Value =" + String (voltsMeasured) + "\nVoltage = " + String (calcVoltage) + "\nDust Density = " + String (dustDensity)
     + " µg/m³\n\nDHT22 - Status = " + String (dht.getStatusString()) + "\nHumidity (%) = " + String (h) + "\nTemperature °C (°F) = " + String (t) + "( " + String (f)
     + " )");
       LINE.notify("รายงานสถานภาพอากาศ ณ ปัจจุบัน\nความชื้นในอากาศ = "+ String (h) +" %\nอุณหภูมิภายในบ้านเรือน = " + String (t) +" °C (" + (f) + " Fํ)\nคุณภาพอากาศ , ความหนาแน่นของฝุ่นละออง PM 2.5 ภายในบ้านเรือน = " + String (dustDensity) +" µg/m³");
