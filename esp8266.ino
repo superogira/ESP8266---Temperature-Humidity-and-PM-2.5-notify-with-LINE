@@ -2,8 +2,8 @@
 #include <NTPClient.h>
 #include <WiFiUdp.h>
 #include <TridentTD_LineNotify.h>
-#define SSID "BANYAI_R3_2.4G"
-#define PASSWORD ""
+#define SSID "xxxxxxxxxx"
+#define PASSWORD "xxxxxxxxxx"
 #define LINE_TOKEN1 "xxxxxxxxxx" //Line token - with Owner
 #define LINE_TOKEN2 "xxxxxxxxxx" //Line token - for Family Group
 
