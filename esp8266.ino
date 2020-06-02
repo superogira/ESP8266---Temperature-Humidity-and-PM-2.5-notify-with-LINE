@@ -99,19 +99,24 @@ void loop()
 
   int hour = 0;
   for (int i = 0; i <= 23;i++) {
-    if ( timeClient.getHours()  == hour && timeClient.getMinutes()  == 5 && timeClient.getSeconds()  < 5) {
+    if ( timeClient.getHours()  == hour && timeClient.getMinutes()  == 0 && timeClient.getSeconds()  < 5) {
       LINE.setToken(LINE_TOKEN2);
+      //LINE.notify("รายงานสถานภาพอากาศ ณ ปัจจุบัน");
+      //LINE.notify("ความชื้นในอากาศ "+ String (h) +" %" );
+      //LINE.notify("อุณหภูมิภายในบ้าน " + String (t) +" องศาเซลเซียส (" + (f) + " Fํ)");
+      //LINE.notify("คุณภาพอากาศ , ความหนาแน่นของฝุ่นละออง PM 2.5 ในอากาศ " + String (dustDensity) +" µg/m³");
       LINE.notify("รายงานสถานภาพอากาศ ณ ปัจจุบัน\nความชื้นในอากาศ - "+ String (h) +" %\nอุณหภูมิภายในบ้านเรือน - " + String (t) +" °C (" + (f) + " Fํ)\nคุณภาพอากาศ , PM 2.5 ภายในบ้านเรือน - " + String (dustDensity) +" µg/m³");
     }
     hour = hour+1;
   }
   
   if ((timeClient.getMinutes()  == 0 || timeClient.getMinutes()  == 30) && timeClient.getSeconds()  < 5) {
-     LINE.setToken(LINE_TOKEN1);
-     LINE.notify("GP2Y1010AU0F - Raw Signal Value =" + String (voltsMeasured) + "\nVoltage = " + String (calcVoltage) + "\nDust Density = " + String (dustDensity)
-     + " µg/m³\n\nDHT22 - Status = " + String (dht.getStatusString()) + "\nHumidity (%) = " + String (h) + "\nTemperature °C (°F) = " + String (t) + "( " + String (f)
-     + " )");
-     LINE.notify("รายงานสถานภาพอากาศ ณ ปัจจุบัน\nความชื้นในอากาศ - "+ String (h) +" %\nอุณหภูมิภายในบ้านเรือน - " + String (t) +" °C (" + (f) + " Fํ)\nคุณภาพอากาศ , ความหนาแน่นของฝุ่นละออง PM 2.5 ภายในบ้านเรือน - " + String (dustDensity) +" µg/m³");
+    LINE.setToken(LINE_TOKEN1);
+ 
+    LINE.notify(String (daysOfTheWeek[timeClient.getDay()]) + ", " + String (timeClient.getHours()) + ":" + String (timeClient.getMinutes()) + ":" + String (timeClient.getSeconds()) + "\n\nGP2Y1010AU0F - Raw Signal Value =" + String (voltsMeasured) + "\nVoltage = " + String (calcVoltage) + "\nDust Density = " + String (dustDensity)
+    + " µg/m³\n\nDHT22 - Status = " + String (dht.getStatusString()) + "\nHumidity (%) = " + String (h) + "\nTemperature °C (°F) = " + String (t) + "( " + String (f)
+    + " )");
+      LINE.notify("รายงานสถานภาพอากาศ ณ ปัจจุบัน\nความชื้นในอากาศ - "+ String (h) +" %\nอุณหภูมิภายในบ้านเรือน - " + String (t) +" °C (" + (f) + " Fํ)\nคุณภาพอากาศ , ความหนาแน่นของฝุ่นละออง PM 2.5 ภายในบ้านเรือน - " + String (dustDensity) +" µg/m³");
   }
   
   delay(5000);
