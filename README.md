@@ -18,5 +18,5 @@
 - ส่งค่าต่าง ๆ เข้า Serial Monitor ทุก 5 วินาที
 
 - ใช้พลังงานราว ๆ 80-90 mAh / ชม.
-
-ดูรายละเอียดเพิ่มเติมได้ที่ลุ่ม Facebook - https://www.facebook.com/groups/arduino.thai/permalink/3197624113613677/
+<br>
+ดูรายละเอียดเพิ่มเติมได้ที่กลุ่ม Facebook - https://www.facebook.com/groups/arduino.thai/permalink/3197624113613677/
